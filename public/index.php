@@ -16,4 +16,9 @@ $app->get('/hello/:name', function ($name) {
     echo "Hello, $name";
 });
 
+// ldap auth
+$app->get('/auth/ldap', function () {
+    echo "Welcome to LDAP Auth";
+});
+
 $app->run();
