@@ -8,7 +8,7 @@
 
 	"require": {
 		"slim/slim": "2.*",
-		"zendframework/zend-config": "2.0.*",
-		"zendframework/zend-authentication": "2.0.*"
+		"zendframework/zend-config": "2.3.*",
+		"zendframework/zend-authentication": "2.3.*"
 	}
 }
