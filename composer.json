@@ -1,5 +1,14 @@
 {
-    "require": {
-        "slim/slim": "2.*"
-    }
+	"repositories": [
+	    {
+		"type": "composer",
+		"url": "https://packages.zendframework.com/"
+	    }
+	],
+
+	"require": {
+		"slim/slim": "2.*",
+		"zendframework/zend-config": "2.0.*",
+		"zendframework/zend-authentication": "2.0.*"
+	}
 }
