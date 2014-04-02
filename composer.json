@@ -10,5 +10,8 @@
 		"slim/slim": "2.*",
 		"zendframework/zend-config": "2.3.*",
 		"zendframework/zend-authentication": "2.3.*"
+	},
+	"autoload": {
+		"psr-0": {"Auth\\": "lib/"}
 	}
 }

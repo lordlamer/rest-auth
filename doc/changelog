@@ -1,0 +1,3 @@
+20140402 - fhabermann
+* initial setup
+* use psr-0 autoloading for ldap auth

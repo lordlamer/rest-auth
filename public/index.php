@@ -18,7 +18,9 @@ $app->get('/hello/:name', function ($name) {
 
 // ldap auth
 $app->get('/auth/ldap', function () {
-    echo "Welcome to LDAP Auth";
+	$auth = new \Auth\Ldap();
+	var_dump($auth->verify('test', 'test'));
+	echo "Welcome to LDAP Auth";
 });
 
 $app->run();
