@@ -65,6 +65,6 @@ class Ldap {
 		    }
 		}
 
-		return true;
+		return $result;
 	}
 }
