@@ -1,0 +1,31 @@
+[ldap]
+route = /auth/ldap
+adapter = ldap
+config = ldap-server1
+
+[ldap2]
+route = /auth/example
+adapter = ldap
+config = ldap-server2
+
+[ldap-server1]
+ldap.log_path = /tmp/ldap.log
+
+; Typical options for Active Directory
+ldap.server1.host = dc1.w.net
+ldap.server1.useStartTls = true
+ldap.server1.accountDomainName = w.net
+ldap.server1.accountDomainNameShort = W
+ldap.server1.accountCanonicalForm = 3
+ldap.server1.baseDn = "CN=Users,DC=w,DC=net"
+
+[ldap-server2]
+ldap.log_path = /tmp/ldap.log
+
+; Typical options for Active Directory
+ldap.server1.host = dc1.x.net
+ldap.server1.useStartTls = true
+ldap.server1.accountDomainName = x.net
+ldap.server1.accountDomainNameShort = X
+ldap.server1.accountCanonicalForm = 3
+ldap.server1.baseDn = "CN=Users,DC=x,DC=net"
