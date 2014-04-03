@@ -65,6 +65,6 @@ class Ldap {
 		    }
 		}
 
-		return $result;
+		return $result->isValid();
 	}
 }
