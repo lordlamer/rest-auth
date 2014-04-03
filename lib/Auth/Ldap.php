@@ -22,6 +22,11 @@ class Ldap {
 	/**
 	 *
 	 */
+	protected $message = '';
+
+	/**
+	 *
+	 */
 	public function __construct($configFile) {
 		$this->configFile = $configFile;
 	}
@@ -40,12 +45,21 @@ class Ldap {
 		$options = $config->production->ldap->toArray();
 		unset($options['log_path']);
 
+		// init auth adapter
 		$adapter = new AuthAdapter($options,
 					   $username,
 					   $password);
 
 		$result = $auth->authenticate($adapter);
 
+		// get messages
+		$messages = $result->getMessages();
+
+		// save error message if exists
+		if(isset($messages[1]))
+			$this->setMessage($messages[1]);
+
+		// check for logging
 		if ($log_path) {
 		    $messages = $result->getMessages();
 
@@ -65,6 +79,21 @@ class Ldap {
 		    }
 		}
 
+		// return result
 		return $result->isValid();
+	}
+
+	/**
+	 *
+	 */
+	public function getMessage() {
+		return $this->message;
+	}
+
+	/**
+	 *
+	 */
+	protected function setMessage($message) {
+		$this->message = $message;
 	}
 }

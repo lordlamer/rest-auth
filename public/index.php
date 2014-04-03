@@ -23,7 +23,8 @@ $app->get('/auth/ldap/:username/:password', function ($username, $password) {
 
 	// default result
 	$res = array(
-		'status' => 'ERROR'
+		'status' => 'ERROR',
+		'message' => ''
 	);
 
 	// check for valid credentials
@@ -31,6 +32,8 @@ $app->get('/auth/ldap/:username/:password', function ($username, $password) {
 		$res = array(
 			'status' => 'SUCCESS'
 		);
+	} else {
+		$res['message'] = $auth->getMessage();
 	}
 
 	// show json result
