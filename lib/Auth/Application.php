@@ -27,10 +27,6 @@ class Application {
 	public function run() {
 		$app = new \Slim\Slim();
 
-		$app->get('/hello/:name', function ($name) {
-		    echo "Hello, $name";
-		});
-
 		// ldap auth
 		$app->get('/auth/ldap/:username/:password', function ($username, $password) {
 			// load ldap adapter
