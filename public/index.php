@@ -8,7 +8,11 @@
  * @license BSD
  */
 
+// use composer autoload
 require '../vendor/autoload.php';
 
+// init auth app
 $app = new \Auth\Application('../config/ldap.ini');
+
+// run auth app
 $app->run();
