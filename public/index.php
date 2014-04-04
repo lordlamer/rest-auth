@@ -10,35 +10,5 @@
 
 require '../vendor/autoload.php';
 
-$app = new \Slim\Slim();
-
-$app->get('/hello/:name', function ($name) {
-    echo "Hello, $name";
-});
-
-// ldap auth
-$app->get('/auth/ldap/:username/:password', function ($username, $password) {
-	// load ldap adapter
-	$auth = new \Auth\Ldap('../config/ldap.ini');
-
-	// default result
-	$res = array(
-		'status' => 'ERROR',
-		'message' => ''
-	);
-
-	// check for valid credentials
-	if($auth->verify($username, $password)) {
-		$res = array(
-			'status' => 'SUCCESS'
-		);
-	} else {
-		$res['message'] = $auth->getMessage();
-	}
-
-	// show json result
-	header('Content-type: application/json');
-	echo json_encode($res);
-});
-
+$app = new \Auth\Application('../config/ldap.ini');
 $app->run();
