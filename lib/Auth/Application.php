@@ -1,7 +1,13 @@
 <?php
 
+/**
+ *
+ */
 namespace Auth;
 
+/**
+ *
+ */
 class Application {
 	/**
 	 *
