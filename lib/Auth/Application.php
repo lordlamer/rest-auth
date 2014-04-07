@@ -63,8 +63,12 @@ class Application {
 				'message' => ''
 			);
 
+			// get username and password
+			$username = $app->request->params('username');
+			$password = $app->request->params('password');
+
 			// check for valid credentials
-			if($auth->verify($app->request->get('username'), $app->request->get('password'))) {
+			if($auth->verify($username, $password)) {
 				$res = array(
 					'status' => 'SUCCESS'
 				);
