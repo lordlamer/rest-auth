@@ -12,7 +12,7 @@
 require '../vendor/autoload.php';
 
 // init auth app
-$app = new \Auth\Application('../config/ldap.ini');
+$app = new \Auth\Application('../config/app.ini');
 
 // run auth app
 $app->run();

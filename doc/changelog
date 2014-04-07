@@ -1,3 +1,6 @@
+20140407 - fhabermann
+* read application config and create routes from config
+
 20140402 - fhabermann
 * initial setup
 * use psr-0 autoloading for ldap auth

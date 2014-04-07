@@ -17,7 +17,7 @@ class Ldap {
 	/**
 	 *
 	 */
-	protected $configFile = null;
+	protected $config = null;
 
 	/**
 	 *
@@ -27,8 +27,8 @@ class Ldap {
 	/**
 	 *
 	 */
-	public function __construct($configFile) {
-		$this->configFile = $configFile;
+	public function __construct($config) {
+		$this->config = $config;
 	}
 
 	/**
@@ -37,12 +37,8 @@ class Ldap {
 	public function verify($username, $password) {
 		$auth = new AuthenticationService();
 
-		$configReader = new ConfigReader();
-		$configData = $configReader->fromFile($this->configFile);
-		$config = new Config($configData, true);
-
-		$log_path = $config->production->ldap->log_path;
-		$options = $config->production->ldap->toArray();
+		$log_path = $this->config->ldap->log_path;
+		$options = $this->config->ldap->toArray();
 		unset($options['log_path']);
 
 		// init auth adapter
