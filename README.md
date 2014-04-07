@@ -56,6 +56,11 @@ The server response is in json format, and returns the following on invalid auth
 <pre><code> {"status":"ERROR", "message":"......"}
 </code></pre>
 
+Requirements
+------------
+
+* PHP >= 5.3.23
+
 License
 -------
 
