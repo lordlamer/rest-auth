@@ -21,12 +21,12 @@ Configuration
 
 1. Go to config folder and create a app.ini. You could use the app.ini.dist as template.
 
-<pre><code> cd config
-</code></pre>
-<pre><code> cp app.ini.dist app.ini
-</code></pre>
+	<pre><code> cd config
+	</code></pre>
+	<pre><code> cp app.ini.dist app.ini
+	</code></pre>
 
-Change app.ini to your needs.
+	Change app.ini to your needs.
 
 2. Enable access to public folder from webserver
 
@@ -36,13 +36,13 @@ Authentication
 In order to authenticate the user, the application can pass username and password as a HTTP GET or POST request like below:
 
 ### Passing username and password as a GET request
-### Route /auth/ldap must be defined
+#### Route /auth/ldap must be defined
 Below is how to make GET request
 <pre><code> http://domain/auth/ldap/username/password
 </code></pre>
 
 ### Passing username and password as a POST request
-### Route /auth/ldap must be defined
+#### Route /auth/ldap must be defined
 The username and password can be passed as a POST request to the following URL.
 <pre><code> http://domain/auth/ldap
 </code></pre>
