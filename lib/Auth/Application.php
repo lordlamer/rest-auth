@@ -5,8 +5,8 @@
  */
 namespace Auth;
 
-use Zend\Config\Reader\Ini as ConfigReader;
-use Zend\Config\Config;
+use Laminas\Config\Reader\Ini as ConfigReader;
+use Laminas\Config\Config;
 
 /**
  *

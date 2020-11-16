@@ -2,13 +2,11 @@
 
 namespace Auth;
 
-use Zend\Authentication\AuthenticationService;
-use Zend\Authentication\Adapter\Ldap as AuthAdapter;
-use Zend\Config\Reader\Ini as ConfigReader;
-use Zend\Config\Config;
-use Zend\Log\Logger;
-use Zend\Log\Writer\Stream as LogWriter;
-use Zend\Log\Filter\Priority as LogFilter;
+use Laminas\Authentication\AuthenticationService;
+use Laminas\Authentication\Adapter\Ldap as AuthAdapter;
+use Laminas\Log\Logger;
+use Laminas\Log\Writer\Stream as LogWriter;
+use Laminas\Log\Filter\Priority as LogFilter;
 
 /**
  *

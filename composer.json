@@ -8,12 +8,12 @@
 
 	"require": {
 		"slim/slim": "2.*",
-		"zendframework/zend-config": "2.3.*",
-		"zendframework/zend-authentication": "2.3.*",
-		"zendframework/zend-ldap": "2.3.*",
-		"zendframework/zend-session": "2.3.*",
-		"zendframework/zend-eventmanager": "2.3.*",
-		"zendframework/zend-log": "2.3.*"
+		"laminas/laminas-ldap": "^2.10",
+		"laminas/laminas-log": "^2.12",
+		"laminas/laminas-eventmanager": "^3.3",
+		"laminas/laminas-session": "^2.10",
+		"laminas/laminas-config": "^3.4",
+		"laminas/laminas-authentication": "^2.7"
 	},
 
 	"autoload": {
