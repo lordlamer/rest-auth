@@ -7,13 +7,14 @@
 	],
 
 	"require": {
-		"slim/slim": "2.*",
-		"laminas/laminas-ldap": "^2.10",
+		"slim/slim": "4.*",
+		"laminas/laminas-ldap": "^2.13",
 		"laminas/laminas-log": "^2.12",
 		"laminas/laminas-eventmanager": "^3.3",
 		"laminas/laminas-session": "^2.10",
 		"laminas/laminas-config": "^3.4",
-		"laminas/laminas-authentication": "^2.7"
+		"laminas/laminas-authentication": "^2.7",
+		"laminas/laminas-diactoros": "^2.11"
 	},
 
 	"autoload": {

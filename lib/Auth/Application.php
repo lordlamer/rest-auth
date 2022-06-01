@@ -7,6 +7,9 @@ namespace Auth;
 
 use Laminas\Config\Reader\Ini as ConfigReader;
 use Laminas\Config\Config;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Factory\AppFactory;
 
 /**
  *
@@ -28,7 +31,7 @@ class Application {
 	 *
 	 */
 	public function run() {
-		$app = new \Slim\Slim();
+        $app = AppFactory::create();
 
 		$configReader = new ConfigReader();
 		$configData = $configReader->fromFile($this->configFile);
@@ -39,58 +42,60 @@ class Application {
 			// check for ldap adapter
 			if(isset($value['adapter']) && $value['adapter'] == 'ldap') {
 				// ldap auth via GET request and username and password in url
-				$app->get($value['route'].'/:username/:password', function ($username, $password) use ($config, $value) {
-					// load ldap adapter
-					$auth = new \Auth\Ldap($config[$value['config']]);
+                $app->get($value['route'].'/{username}/{password}', function (Request $request, Response $response, array $args) use ($config, $value) {
+                    // load ldap adapter
+                    $auth = new \Auth\Ldap($config[$value['config']]);
 
-					// default result
-					$res = array(
-						'status' => 'ERROR',
-						'message' => ''
-					);
+                    // default result
+                    $res = array(
+                        'status' => 'ERROR',
+                        'message' => ''
+                    );
 
-					// check for valid credentials
-					if($auth->verify($username, $password)) {
-						$res = array(
-							'status' => 'SUCCESS'
-						);
-					} else {
-						$res['message'] = $auth->getMessage();
-					}
+                    // check for valid credentials
+                    if($auth->verify($args['username'], $args['password'])) {
+                        $res = array(
+                            'status' => 'SUCCESS'
+                        );
+                    } else {
+                        $res['message'] = $auth->getMessage();
+                    }
 
-					// show json result
-					header('Content-type: application/json');
-					echo json_encode($res);
-				});
+                    // show json result
+                    header('Content-type: application/json');
+                    $response->getBody()->write(json_encode($res));
+                    return $response;
+                });
 
 				// ldap auth via GET and POST request
-				$app->map($value['route'], function() use ($app, $config, $value) {
-					// load ldap adapter
-					$auth = new \Auth\Ldap($config[$value['config']]);
+                $app->map(['GET', 'POST'], $value['route'], function (Request $request, Response $response, array $args) use ($app, $config, $value) {
+                    // load ldap adapter
+                    $auth = new \Auth\Ldap($config[$value['config']]);
 
-					// default result
-					$res = array(
-						'status' => 'ERROR',
-						'message' => ''
-					);
+                    // default result
+                    $res = array(
+                        'status' => 'ERROR',
+                        'message' => ''
+                    );
 
-					// get username and password
-					$username = $app->request->params('username');
-					$password = $app->request->params('password');
+                    // get username and password
+                    $username = $request->getQueryParams()['username'];
+                    $password = $request->getQueryParams()['password'];
 
-					// check for valid credentials
-					if($auth->verify($username, $password)) {
-						$res = array(
-							'status' => 'SUCCESS'
-						);
-					} else {
-						$res['message'] = $auth->getMessage();
-					}
+                    // check for valid credentials
+                    if($auth->verify($username, $password)) {
+                        $res = array(
+                            'status' => 'SUCCESS'
+                        );
+                    } else {
+                        $res['message'] = $auth->getMessage();
+                    }
 
-					// show json result
-					header('Content-type: application/json');
-					echo json_encode($res);
-				})->via('GET', 'POST');
+                    // show json result
+                    header('Content-type: application/json');
+                    $response->getBody()->write(json_encode($res));
+                    return $response;
+                });
 			}
 		}
 

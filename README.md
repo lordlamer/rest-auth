@@ -59,12 +59,12 @@ The server response is in json format, and returns the following on invalid auth
 Requirements
 ------------
 
-* PHP >= 5.3.23
+* PHP >= 7.4
 
 License
 -------
 
-Copyright (c) 2014, lordlamer
+Copyright (c) 2022, lordlamer
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
