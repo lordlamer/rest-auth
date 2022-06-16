@@ -1,3 +1,6 @@
+[general]
+base_path =
+
 [ldap]
 route = /auth/ldap
 adapter = ldap

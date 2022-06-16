@@ -37,6 +37,10 @@ class Application {
 		$configData = $configReader->fromFile($this->configFile);
 		$config = new Config($configData, true);
 
+        // set base path if required
+        if(isset($config['general']['base_path']) && $config['general']['base_path'] != '')
+            $app->setBasePath($config['general']['base_path']);
+
 		// iterate over each config section
 		foreach($config as $key => $value) {
 			// check for ldap adapter
@@ -79,8 +83,9 @@ class Application {
                     );
 
                     // get username and password
-                    $username = $request->getQueryParams()['username'];
-                    $password = $request->getQueryParams()['password'];
+                    $data = $request->getParsedBody();
+                    $username = $data['username'];
+                    $password = $data['password'];
 
                     // check for valid credentials
                     if($auth->verify($username, $password)) {
